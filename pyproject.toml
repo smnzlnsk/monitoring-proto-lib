@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "monitoring-proto-lib"
-version = "0.0.1"
+version = "0.0.3"
 description = "Protobuf definitions for monitoring messages between Oakestra and Processor"
 authors = ["Simon Zelenski <simon.zelenski@gmail.com>"]
 
