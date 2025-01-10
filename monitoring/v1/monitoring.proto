@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package monitoring.v1;
+
+import "monitoring/v1/deploy.proto";
+import "monitoring/v1/delete.proto";
+
+option go_package = "github.com/smnzlnsk/monitoring-proto-lib/monitoring/v1";
+
+// Service definition
+service MonitoringService {
+  rpc NotifyDeployment (NotifyDeploymentRequest) returns (NotifyDeploymentResponse) {}
+  rpc NotifyDeletion (NotifyDeletionRequest) returns (NotifyDeletionResponse) {}
+}

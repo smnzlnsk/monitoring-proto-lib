@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package monitoring.v1;
+
+
+option go_package = "github.com/smnzlnsk/monitoring-proto-lib/monitoring/v1";
+
+message NotifyDeploymentRequest {
+  string job_name = 1;
+  string job_hash = 2;
+  int32 instance_number = 3;
+  ResourceInfo resource = 4;
+  repeated CalculationRequest calculation_requests = 5;
+}
+
+message ResourceInfo {
+  string cpu = 1;
+  string memory = 2;
+  string gpu = 3;
+  string disk = 4;
+  NetworkInfo network = 5;
+}
+
+message NetworkInfo {
+  string bandwidth_in = 1;
+  string bandwidth_out = 2;
+}
+
+message CalculationRequest {
+  string metric_name = 1;
+  string formula = 2;
+  string description = 3;
+  repeated string states = 4;
+  string goal = 5;
+  string unit = 6;
+}
+
+message NotifyDeploymentResponse {
+  bool acknowledged = 1;
+  string message = 2;
+}
