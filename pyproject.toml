@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "monitoring-proto-lib"
-version = "0.0.5"
+version = "0.0.6"
 description = "Protobuf definitions for monitoring messages between Oakestra and Processor"
 authors = ["Simon Zelenski <simon.zelenski@gmail.com>"]
 packages = [
@@ -13,5 +13,9 @@ grpcio = "^1.54.0"
 protobuf = "^4.22.1"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = [
+    "poetry-core>=1.0.0",
+    "setuptools>=42",
+    "wheel"
+]
 build-backend = "poetry.core.masonry.api"
