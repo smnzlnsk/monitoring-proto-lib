@@ -4,7 +4,7 @@ version = "0.0.7"
 description = "Protobuf definitions for monitoring messages between Oakestra and Processor"
 authors = ["Simon Zelenski <simon.zelenski@gmail.com>"]
 packages = [
-    {include = "monitoring/v1", from = "gen/python"}
+    {include = "monitoring_proto_lib/monitoring/v1", from = "gen/python"}
 ]
 
 [tool.poetry.dependencies]
