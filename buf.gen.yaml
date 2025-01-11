@@ -9,6 +9,9 @@ plugins:
     opt:
       - paths=source_relative
   - plugin: buf.build/protocolbuffers/python
-    out: gen/python
+    out: gen/python/monitoring_proto_lib
+    opt:
+      - pyi_out=gen/python/monitoring_proto_lib
   - plugin: buf.build/grpc/python
-    out: gen/python
+    out: gen/python/monitoring_proto_lib
+
