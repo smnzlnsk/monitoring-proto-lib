@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package monitoring.v1;
 
-
 option go_package = "github.com/smnzlnsk/monitoring-proto-lib/monitoring/v1";
 
 message NotifyDeploymentRequest {

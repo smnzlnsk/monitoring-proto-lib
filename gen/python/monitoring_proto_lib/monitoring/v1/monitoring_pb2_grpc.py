@@ -20,12 +20,12 @@ class MonitoringServiceStub(object):
                 '/monitoring.v1.MonitoringService/NotifyDeployment',
                 request_serializer=monitoring_dot_v1_dot_deploy__pb2.NotifyDeploymentRequest.SerializeToString,
                 response_deserializer=monitoring_dot_v1_dot_deploy__pb2.NotifyDeploymentResponse.FromString,
-                _registered_method=True)
+                )
         self.NotifyDeletion = channel.unary_unary(
                 '/monitoring.v1.MonitoringService/NotifyDeletion',
                 request_serializer=monitoring_dot_v1_dot_delete__pb2.NotifyDeletionRequest.SerializeToString,
                 response_deserializer=monitoring_dot_v1_dot_delete__pb2.NotifyDeletionResponse.FromString,
-                _registered_method=True)
+                )
 
 
 class MonitoringServiceServicer(object):
@@ -61,7 +61,6 @@ def add_MonitoringServiceServicer_to_server(servicer, server):
     generic_handler = grpc.method_handlers_generic_handler(
             'monitoring.v1.MonitoringService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('monitoring.v1.MonitoringService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
@@ -80,21 +79,11 @@ class MonitoringService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/monitoring.v1.MonitoringService/NotifyDeployment',
+        return grpc.experimental.unary_unary(request, target, '/monitoring.v1.MonitoringService/NotifyDeployment',
             monitoring_dot_v1_dot_deploy__pb2.NotifyDeploymentRequest.SerializeToString,
             monitoring_dot_v1_dot_deploy__pb2.NotifyDeploymentResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def NotifyDeletion(request,
@@ -107,18 +96,8 @@ class MonitoringService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/monitoring.v1.MonitoringService/NotifyDeletion',
+        return grpc.experimental.unary_unary(request, target, '/monitoring.v1.MonitoringService/NotifyDeletion',
             monitoring_dot_v1_dot_delete__pb2.NotifyDeletionRequest.SerializeToString,
             monitoring_dot_v1_dot_delete__pb2.NotifyDeletionResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

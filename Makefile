@@ -1,24 +1,30 @@
-.PHONY: setup generate generate-go generate-python lint
+.PHONY: generate clean
 
-# Setup development environment
-setup:
-	# Install Python dependencies
-	pip install -r requirements.txt
-	# Install Go dependencies
-	go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-	go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-	# Check if protoc is installed, if not suggest installation
-	@which protoc > /dev/null || (echo "Please install protoc: sudo apt-get install -y protobuf-compiler (Ubuntu) or brew install protobuf (MacOS)")
-	# Check if buf is installed, if not suggest installation
-	@which buf > /dev/null || (echo "Please install buf: https://buf.build/docs/installation")
+PROTO_DIR := proto
+GO_OUT_DIR := gen/go
+PYTHON_OUT_DIR := gen/python/monitoring_proto_lib
 
 generate: generate-go generate-python
 
 generate-go:
-	buf generate --template buf.gen.yaml
+	@mkdir -p $(GO_OUT_DIR)
+	protoc \
+		--go_out=$(GO_OUT_DIR) \
+		--go_opt=paths=source_relative \
+		--go-grpc_out=$(GO_OUT_DIR) \
+		--go-grpc_opt=paths=source_relative \
+		--proto_path=$(PROTO_DIR) \
+		$(shell find $(PROTO_DIR) -name '*.proto')
 
 generate-python:
-	buf generate --template buf.gen.yaml
+	@mkdir -p $(PYTHON_OUT_DIR)
+	python3 -m grpc_tools.protoc \
+		--python_out=$(PYTHON_OUT_DIR) \
+		--grpc_python_out=$(PYTHON_OUT_DIR) \
+		--pyi_out=$(PYTHON_OUT_DIR) \
+		--proto_path=$(PROTO_DIR) \
+		$(shell find $(PROTO_DIR) -name '*.proto')
 
-lint:
-	buf lint
+clean:
+	rm -rf $(GO_OUT_DIR)
+	rm -rf $(PYTHON_OUT_DIR)
